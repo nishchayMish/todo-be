@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import todoRoutes from "./modules/todo/todo.routes.js";
-
+import userRoutes from "./modules/user/user.routes.js"
 const app = express();
 
 app.use(cors({
@@ -16,5 +16,6 @@ app.get("/ping", (req, res) => {
 });
 
 app.use("/api/v1", todoRoutes);
+app.use("/api/v1", userRoutes);
 
 export default app;
