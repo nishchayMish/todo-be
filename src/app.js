@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors({
     origin: ["http://localhost:3000", "https://todo-fe-rust.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 }));
 
 app.use(express.json());
