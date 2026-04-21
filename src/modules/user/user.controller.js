@@ -19,8 +19,8 @@ export const loginController = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: "none",
-            secure: true,
+            sameSite: process.env.NODE_ENV === "prod" ? "none" : "lax",
+            secure: process.env.NODE_ENV === "prod" ? true : false,
         })
 
         delete user.role;
@@ -35,6 +35,7 @@ export const loginController = async (req, res) => {
         });
     }
 };
+
 
 export const registerController = async (req, res) => {
     const { name, email, password } = req.body;
