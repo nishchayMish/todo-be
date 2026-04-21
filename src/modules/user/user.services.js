@@ -34,12 +34,6 @@ export const login = async (email, password) => {
         { expiresIn: "1h" }
     );
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "lax"
-    })
-
     delete user.password;
     return { token, user };
 };

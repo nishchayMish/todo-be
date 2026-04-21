@@ -6,13 +6,14 @@ import {
     toggleTodo,
     updateTodo,
 } from "./todo.controller.js";
+import { verifyToken } from "../../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/todos", getTodosController);
-router.post("/todos", createTodoController)
-router.delete("/todos/:id", deleteTodo)
-router.patch("/todos/:id", toggleTodo)
-router.put("/todos/:id", updateTodo)
+router.get("/todos", verifyToken, getTodosController);
+router.post("/todos", verifyToken, createTodoController)
+router.delete("/todos/:id", verifyToken, deleteTodo)
+router.patch("/todos/:id", verifyToken, toggleTodo)
+router.put("/todos/:id", verifyToken, updateTodo)
 
 export default router;

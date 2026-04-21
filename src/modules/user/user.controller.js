@@ -15,11 +15,19 @@ export const loginController = async (req, res) => {
     }
 
     try {
-        const data = await login(email, password);
+        const { token, user } = await login(email, password);
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+        })
+
+        delete user.role;
 
         return res.status(200).json({
             message: "Login successful",
-            data
+            user
         });
     } catch (error) {
         return res.status(error.status || 500).json({
@@ -72,4 +80,4 @@ export const registerController = async (req, res) => {
             message: "Internal Server Error"
         });
     }
-}    
+}
