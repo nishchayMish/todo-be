@@ -82,3 +82,18 @@ export const registerController = async (req, res) => {
         });
     }
 }
+
+export const logoutController = async (req, res) => {
+    try {
+        res.cookie("token", "", {
+            httpOnly: true,
+            expiresIn: new Date(0),
+            path: "/"
+        })
+        return res.status(200).json({
+            message: "Logout successful"
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
