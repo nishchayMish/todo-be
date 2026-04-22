@@ -19,8 +19,8 @@ export const loginController = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: process.env.NODE_ENV === "prod" ? "none" : "lax",
-            secure: process.env.NODE_ENV === "prod" ? true : false,
+            sameSite: "none",
+            secure: true,
         })
 
         delete user.role;
